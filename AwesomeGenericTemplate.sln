@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.WebApi", "AGT.WebApi\AGT.WebApi.csproj", "{E3772596-65C4-4544-8C10-66158F624620}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.Users", "AGT.Domain.Users\AGT.Domain.Users.csproj", "{5A1800FD-1076-4DE0-AD26-6F76124283FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.Calendars", "AGT.Domain.Calendars\AGT.Domain.Calendars.csproj", "{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.Session", "AGT.Domain.Session\AGT.Domain.Session.csproj", "{BF38565C-9BE8-47F3-8891-27126D9B72D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.UsersTest", "AGT.Domain.UsersTest\AGT.Domain.UsersTest.csproj", "{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{E3772596-65C4-4544-8C10-66158F624620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3772596-65C4-4544-8C10-66158F624620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3772596-65C4-4544-8C10-66158F624620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A1800FD-1076-4DE0-AD26-6F76124283FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A1800FD-1076-4DE0-AD26-6F76124283FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A1800FD-1076-4DE0-AD26-6F76124283FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A1800FD-1076-4DE0-AD26-6F76124283FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
