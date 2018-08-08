@@ -10,7 +10,7 @@ namespace AGT.Domain.Users
         public string Surname { get; private set; }
         public DateTime Birthday { get; private set; }
         private string Password { get; set; }
-        public ICollection<IRol> Rols { get; private set; }
+        public ICollection<IRol> Roles { get; private set; }
 
         public User() { 
             //Leave if for any Relfection based system that might need it
@@ -23,12 +23,12 @@ namespace AGT.Domain.Users
             Surname = surname;
             Password = password;
             Birthday = birthday;
-            Rols = new List<IRol>();
+            Roles = new List<IRol>();
         }
 
         public void AddRol(IRol rol)
         {
-            Rols.Add(rol);
+            Roles.Add(rol);
         }
 
         public override bool Equals(object obj)

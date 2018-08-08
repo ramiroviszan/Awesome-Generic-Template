@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AGT.Contracts.DataAccess\AGT.Contracts.DataAccess.csproj" />
+    <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
+  </ItemGroup>
+
+</Project>

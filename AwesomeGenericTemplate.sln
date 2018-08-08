@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.WebApi", "AGT.WebApi\AGT.WebApi.csproj", "{E3772596-65C4-4544-8C10-66158F624620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.WebApi", "AGT.WebApi\AGT.WebApi.csproj", "{E3772596-65C4-4544-8C10-66158F624620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.Users", "AGT.Domain.Users\AGT.Domain.Users.csproj", "{5A1800FD-1076-4DE0-AD26-6F76124283FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Domain.Users", "AGT.Domain.Users\AGT.Domain.Users.csproj", "{5A1800FD-1076-4DE0-AD26-6F76124283FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.Calendars", "AGT.Domain.Calendars\AGT.Domain.Calendars.csproj", "{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Domain.Calendars", "AGT.Domain.Calendars\AGT.Domain.Calendars.csproj", "{F9554E05-5E9D-4D7C-9F6C-0D4ACA94133F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.Session", "AGT.Domain.Session\AGT.Domain.Session.csproj", "{BF38565C-9BE8-47F3-8891-27126D9B72D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Domain.Session", "AGT.Domain.Session\AGT.Domain.Session.csproj", "{BF38565C-9BE8-47F3-8891-27126D9B72D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Domain.UsersTest", "AGT.Domain.UsersTest\AGT.Domain.UsersTest.csproj", "{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users", "AGT.Application.Users\AGT.Application.Users.csproj", "{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users.Test", "AGT.Application.Users.Test\AGT.Application.Users.Test.csproj", "{289F62E8-9E92-4A35-BBD4-251137A217D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Contracts.DataAccess", "AGT.Contracts.DataAccess\AGT.Contracts.DataAccess.csproj", "{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +39,18 @@ Global
 		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF38565C-9BE8-47F3-8891-27126D9B72D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18A035C9-2B60-4781-93D9-F8AF53E3B3B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289F62E8-9E92-4A35-BBD4-251137A217D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289F62E8-9E92-4A35-BBD4-251137A217D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289F62E8-9E92-4A35-BBD4-251137A217D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289F62E8-9E92-4A35-BBD4-251137A217D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
