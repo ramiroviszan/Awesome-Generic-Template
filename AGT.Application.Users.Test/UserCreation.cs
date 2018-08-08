@@ -5,6 +5,7 @@ using AGT.Domain.Users;
 using System;
 using AGT.Contracts.DataAccess;
 using AGT.Contracts.Application.Users;
+using AGT.Application.Users.Exceptions;
 
 namespace AGT.Application.Users.Test
 {
@@ -59,6 +60,24 @@ namespace AGT.Application.Users.Test
             rolFactory.VerifyNoOtherCalls();
 
             Assert.IsTrue(user.Roles.Count == 1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ApplicationUsersException), AllowDerivedTypes = true)]
+        public void SignUpDuplicatedParentExceptionTest()
+        {
+            userDataAccess.Setup(r => r.Exists(user)).Returns(true);
+
+            userService.SignUp(user);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UserAlreadyExistsException), AllowDerivedTypes = true)]
+        public void SignUpDuplicatedChildExceptionTest()
+        {
+            userDataAccess.Setup(r => r.Exists(user)).Returns(true);
+
+            userService.SignUp(user);
         }
     }
 }
