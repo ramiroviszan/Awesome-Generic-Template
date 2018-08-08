@@ -6,6 +6,7 @@ namespace AGT.Domain.Users
     public class User
     {
         public string Username { get; private set; }
+        public string Email { get; private set; }
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public DateTime Birthday { get; private set; }
@@ -16,9 +17,10 @@ namespace AGT.Domain.Users
             //Leave if for any Relfection based system that might need it
         }
 
-        public User(string username, string name, string surname, string password, DateTime birthday)
+        public User(string username, string email, string name, string surname, string password, DateTime birthday)
         {
             Username = username;
+            Email = email;
             Name = name;
             Surname = surname;
             Password = password;
@@ -39,6 +41,11 @@ namespace AGT.Domain.Users
                 return Username.Equals(other.Username) && Password.Equals(other.Password);
             }
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Username);
         }
     }
 }

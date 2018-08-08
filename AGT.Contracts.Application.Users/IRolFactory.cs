@@ -1,6 +1,6 @@
 ﻿using AGT.Domain.Users;
 
-namespace AGT.Application.Users
+namespace AGT.Contracts.Application.Users
 {
     public enum RolEnum
     {

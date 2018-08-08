@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users.Test"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Contracts.DataAccess", "AGT.Contracts.DataAccess\AGT.Contracts.DataAccess.csproj", "{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users.Exceptions", "AGT.Application.Users.Exceptions\AGT.Application.Users.Exceptions.csproj", "{F77B0D79-AC66-42A9-B812-28EF2CE66273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Contracts.Application.Users", "AGT.Contracts.Application.Users\AGT.Contracts.Application.Users.csproj", "{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31FD5F1-7FAC-41BF-AF95-289B4DF906E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F77B0D79-AC66-42A9-B812-28EF2CE66273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F77B0D79-AC66-42A9-B812-28EF2CE66273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F77B0D79-AC66-42A9-B812-28EF2CE66273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F77B0D79-AC66-42A9-B812-28EF2CE66273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

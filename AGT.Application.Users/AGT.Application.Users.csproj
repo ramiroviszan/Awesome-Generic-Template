@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AGT.Application.Users.Exceptions\AGT.Application.Users.Exceptions.csproj" />
+    <ProjectReference Include="..\AGT.Contracts.Application.Users\AGT.Contracts.Application.Users.csproj" />
     <ProjectReference Include="..\AGT.Contracts.DataAccess\AGT.Contracts.DataAccess.csproj" />
     <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
   </ItemGroup>

@@ -4,6 +4,7 @@ using Moq;
 using AGT.Domain.Users;
 using System;
 using AGT.Contracts.DataAccess;
+using AGT.Contracts.Application.Users;
 
 namespace AGT.Application.Users.Test
 {
@@ -26,7 +27,7 @@ namespace AGT.Application.Users.Test
 
         private User GetUser()
         {
-            var user = new User("User1", "July", "Musk", "Pass", DateTime.Today);
+            var user = new User("User1", "user@mail.com", "July", "Musk", "Pass", DateTime.Today);
             return user;
         }
 
