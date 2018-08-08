@@ -7,11 +7,12 @@ namespace AGT.Contracts.DataAccess
 {
     public interface IBaseDataAccess<T>
     {
-        bool Exists(T toGet);
-        T Find(T toGet);
+        T Find(T entity);
         IEnumerable<T> FindAll();
         IEnumerable<T> FindAllByFilter(Expression<Func<T, bool>> expression);
-        T Add(T toAdd);
-        T Update(T toUpdate);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        void Save();
     }
 }

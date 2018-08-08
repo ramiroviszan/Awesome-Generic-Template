@@ -35,25 +35,25 @@ namespace AGT.Application.Users.Test
         [TestMethod]
         public void SignUpTest()
         {
-            userDataAccess.Setup(r => r.Exists(user)).Returns(false);
+            userDataAccess.Setup(r => r.Find(user));
 
             userService.SignUp(user);
 
-            userDataAccess.Verify(r => r.Add(user));
-            userDataAccess.Verify(r => r.Exists(user));
+            userDataAccess.Verify(r => r.Create(user));
+            userDataAccess.Verify(r => r.Find(user));
         }
 
         [TestMethod]
         public void SignUpDefaultRolTest()
         {
-            userDataAccess.Setup(r => r.Exists(user)).Returns(false);
+            userDataAccess.Setup(r => r.Find(user));
             rolFactory.Setup(f => f.Create(RolEnum.DEFAULT));
 
             userService.SignUp(user);
 
             //To use VerifyNoOtherCalls we need to specify each Verify(method). VerifyAll or Verify() won't work
-            userDataAccess.Verify(r => r.Add(user));
-            userDataAccess.Verify(r => r.Exists(user));
+            userDataAccess.Verify(r => r.Create(user));
+            userDataAccess.Verify(r => r.Find(user));
             userDataAccess.VerifyNoOtherCalls();
 
             rolFactory.Verify(r => r.Create(RolEnum.DEFAULT));
@@ -66,7 +66,7 @@ namespace AGT.Application.Users.Test
         [ExpectedException(typeof(ApplicationUsersException), AllowDerivedTypes = true)]
         public void SignUpDuplicatedParentExceptionTest()
         {
-            userDataAccess.Setup(r => r.Exists(user)).Returns(true);
+            userDataAccess.Setup(r => r.Find(user)).Throws(new Exception());
 
             userService.SignUp(user);
         }
@@ -75,7 +75,7 @@ namespace AGT.Application.Users.Test
         [ExpectedException(typeof(UserAlreadyExistsException), AllowDerivedTypes = true)]
         public void SignUpDuplicatedChildExceptionTest()
         {
-            userDataAccess.Setup(r => r.Exists(user)).Returns(true);
+            userDataAccess.Setup(r => r.Find(user)).Throws(new Exception());
 
             userService.SignUp(user);
         }

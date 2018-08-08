@@ -19,12 +19,17 @@ namespace AGT.Application.Users
 
         public void SignUp(User user)
         {
-            if (repository.Exists(user))
-                throw new UserAlreadyExistsException();
+            try
+            {
+                repository.Find(user);
+            } catch(Exception e)
+            {
+                throw new UserAlreadyExistsException(e);
+            }
 
             user.AddRol(rolFactory.Create(RolEnum.DEFAULT));
 
-            repository.Add(user);
+            repository.Create(user);
         }
 
     }

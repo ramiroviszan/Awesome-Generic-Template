@@ -8,5 +8,9 @@ namespace AGT.Application.Users.Exceptions
         public UserAlreadyExistsException() : base("User already exists")
         {
         }
+
+        public UserAlreadyExistsException(Exception inner) : base("User already exists", inner)
+        {
+        }
     }
 }
