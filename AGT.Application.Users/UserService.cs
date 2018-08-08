@@ -7,10 +7,12 @@ namespace AGT.Application.Users
     public class UserService : IUserService
     {
         private IBaseDataAccess<User> repository;
+        private IRolFactory rolFactory;
 
-        public UserService(IBaseDataAccess<User> repo)
+        public UserService(IBaseDataAccess<User> repo, IRolFactory factory)
         {
             repository = repo;
+            rolFactory = factory;
         }
 
         public void SignUp(User user)
@@ -18,7 +20,10 @@ namespace AGT.Application.Users
             if (repository.Exists(user))
                 throw new Exception();
 
+            user.AddRol(rolFactory.Create(RolEnum.DEFAULT));
+
             repository.Add(user);
         }
+
     }
 }
