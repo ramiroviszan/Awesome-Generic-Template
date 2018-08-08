@@ -4,27 +4,28 @@ using System.Text;
 
 namespace AGT.Domain.Users
 {
-    public class DefaultRol : IRol
+    public class DefaultRol : Rol
     {
+        public override int Id { get; protected set; }
         public string Name { get { return "Default"; } }
-        public ICollection<IFeature> Features { get; private set; }
+        public ICollection<Feature> Features { get; protected set; }
 
         public DefaultRol()
         {
-            Features = new List<IFeature>();
+            Features = new List<Feature>();
         }
 
-        public void AddFeature(IFeature feature)
+        public override void AddFeature(Feature feature)
         {
             Features.Add(feature);
         }
 
-        public bool HasFeature(IFeature feature)
+        public override bool HasFeature(Feature feature)
         {
             return Features.Contains(feature);
         }
 
-        public void RemoveFeature(IFeature feature)
+        public override void RemoveFeature(Feature feature)
         {
             Features.Remove(feature);
         }

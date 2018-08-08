@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AGT.Application.Users;
+using AGT.Contracts.Application.Users;
+using AGT.Contracts.Repository;
+using AGT.Domain.Users;
+using AGT.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,6 +32,11 @@ namespace AGT.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<DomainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AGTDatabase")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IRolFactory, RolFactory>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

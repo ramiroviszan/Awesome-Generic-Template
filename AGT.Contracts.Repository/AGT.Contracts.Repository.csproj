@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
+  </ItemGroup>
+
 </Project>

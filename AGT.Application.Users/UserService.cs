@@ -1,36 +1,29 @@
-﻿using AGT.Contracts.DataAccess;
-using AGT.Application.Users.Exceptions;
-using AGT.Domain.Users;
-using System;
+﻿using AGT.Domain.Users;
 using AGT.Contracts.Application.Users;
+using AGT.Contracts.Repository;
+using AGT.Application.Users.Exceptions;
 
 namespace AGT.Application.Users
 {
     public class UserService : IUserService
     {
-        private IBaseDataAccess<User> repository;
+        private IUnitOfWork repositories;
         private IRolFactory rolFactory;
 
-        public UserService(IBaseDataAccess<User> repo, IRolFactory factory)
+        public UserService(IUnitOfWork unit, IRolFactory factory)
         {
-            repository = repo;
+            repositories = unit;
             rolFactory = factory;
         }
 
         public void SignUp(User user)
         {
-            try
+            if(repositories.Users.Exists(user))
             {
-                repository.Find(user);
-            } catch(Exception e)
-            {
-                throw new UserAlreadyExistsException(e);
+                throw new UserAlreadyExistsException();
             }
-
             user.AddRol(rolFactory.Create(RolEnum.DEFAULT));
-
-            repository.Create(user);
+            repositories.Users.Add(user);
         }
-
     }
 }

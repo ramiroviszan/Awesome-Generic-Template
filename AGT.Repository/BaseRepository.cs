@@ -1,4 +1,6 @@
-﻿using AGT.Contracts.DataAccess;
+﻿using AGT.Contracts.Repository;
+using AGT.Repository.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,48 +8,47 @@ using System.Linq.Expressions;
 
 namespace AGT.Repository
 {
-    public abstract class BaseRepository<T> : IBaseDataAccess<T> where T : class
+    public abstract class BaseRepository<T> : IRepository<T> where T : class
     {
-        protected RepositoryContext RepositoryContext { get; set; }
+        protected DbContext Context { get; private set; }
 
-        public BaseRepository(RepositoryContext repositoryContext)
+        public BaseRepository(DbContext repositoryContext)
         {
-            RepositoryContext = repositoryContext;
+            Context = repositoryContext;
         }
 
-        public T Find(T entity)
-        {
-            return RepositoryContext.Set<T>().Find(entity);
-        }
+        public abstract bool Exists(T entity);
+        public abstract T Find(T entity);
 
         public IEnumerable<T> FindAll()
         {
-            return RepositoryContext.Set<T>();
+            return Context.Set<T>().ToList();
         }
 
         public IEnumerable<T> FindAllByFilter(Expression<Func<T, bool>> expression)
         {
-            return RepositoryContext.Set<T>().Where(expression);
+            return Context.Set<T>().Where(expression);
         }
 
-        public void Create(T entity)
+        public void Add(T entity)
         {
-            RepositoryContext.Set<T>().Add(entity);
+            Context.Set<T>().Add(entity);
         }
 
-        public void Update(T entity)
+        public void AddRange(IEnumerable<T> entities)
         {
-            RepositoryContext.Set<T>().Update(entity);
+            Context.Set<T>().AddRange(entities);
         }
 
-        public void Delete(T entity)
+        public void Remove(T entity)
         {
-            RepositoryContext.Set<T>().Remove(entity);
+            Context.Set<T>().Remove(entity);
         }
 
-        public void Save()
+        public void RemoveRange(IEnumerable<T> entities)
         {
-            RepositoryContext.SaveChanges();
+            Context.Set<T>().RemoveRange(entities);
         }
+
     }
 }

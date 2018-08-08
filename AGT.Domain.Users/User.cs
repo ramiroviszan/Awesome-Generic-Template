@@ -5,15 +5,16 @@ namespace AGT.Domain.Users
 {
     public class User
     {
+        public int Id { get; private set; }
         public string Username { get; private set; }
         public string Email { get; private set; }
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public DateTime Birthday { get; private set; }
         private string Password { get; set; }
-        public ICollection<IRol> Roles { get; private set; }
+        public ICollection<Rol> Roles { get; private set; }
 
-        public User() { 
+        private User() { 
             //Leave if for any Relfection based system that might need it
         }
 
@@ -25,10 +26,10 @@ namespace AGT.Domain.Users
             Surname = surname;
             Password = password;
             Birthday = birthday;
-            Roles = new List<IRol>();
+            Roles = new List<Rol>();
         }
 
-        public void AddRol(IRol rol)
+        public void AddRol(Rol rol)
         {
             Roles.Add(rol);
         }

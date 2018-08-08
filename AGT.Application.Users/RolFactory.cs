@@ -8,7 +8,12 @@ namespace AGT.Application.Users
 {
     public class RolFactory : IRolFactory
     {
-        public IRol Create(RolEnum rolName)
+        public RolFactory()
+        {
+
+        }
+
+        public Rol Create(RolEnum rolName)
         {
             switch (rolName)
             {

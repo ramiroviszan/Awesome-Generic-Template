@@ -3,9 +3,9 @@ using AGT.Application.Users;
 using Moq;
 using AGT.Domain.Users;
 using System;
-using AGT.Contracts.DataAccess;
 using AGT.Contracts.Application.Users;
 using AGT.Application.Users.Exceptions;
+using AGT.Contracts.Repository;
 
 namespace AGT.Application.Users.Test
 {
@@ -14,16 +14,16 @@ namespace AGT.Application.Users.Test
     {
         private IUserService userService;
         private User user;
-        private Mock<IBaseDataAccess<User>> userDataAccess;
+        private Mock<IUnitOfWork> unitOfWork;
         private Mock<IRolFactory> rolFactory;
 
         [TestInitialize]
         public void SetUp()
         {
             user = GetUser();
-            userDataAccess = new Mock<IBaseDataAccess<User>>();
+            unitOfWork = new Mock<IUnitOfWork>();
             rolFactory = new Mock<IRolFactory>();
-            userService = new UserService(userDataAccess.Object, rolFactory.Object);
+            userService = new UserService(unitOfWork.Object, rolFactory.Object);
         }
 
         private User GetUser()
@@ -35,26 +35,26 @@ namespace AGT.Application.Users.Test
         [TestMethod]
         public void SignUpTest()
         {
-            userDataAccess.Setup(r => r.Find(user));
+            unitOfWork.Setup(r => r.Users.Exists(user)).Returns(false);
 
             userService.SignUp(user);
 
-            userDataAccess.Verify(r => r.Create(user));
-            userDataAccess.Verify(r => r.Find(user));
+            unitOfWork.Verify(r => r.Users.Exists(user));
+            unitOfWork.Verify(r => r.Users.Add(user));
         }
 
         [TestMethod]
         public void SignUpDefaultRolTest()
         {
-            userDataAccess.Setup(r => r.Find(user));
+            unitOfWork.Setup(r => r.Users.Exists(user)).Returns(false);
             rolFactory.Setup(f => f.Create(RolEnum.DEFAULT));
 
             userService.SignUp(user);
 
             //To use VerifyNoOtherCalls we need to specify each Verify(method). VerifyAll or Verify() won't work
-            userDataAccess.Verify(r => r.Create(user));
-            userDataAccess.Verify(r => r.Find(user));
-            userDataAccess.VerifyNoOtherCalls();
+            unitOfWork.Verify(r => r.Users.Exists(user));
+            unitOfWork.Verify(r => r.Users.Add(user));
+            unitOfWork.VerifyNoOtherCalls();
 
             rolFactory.Verify(r => r.Create(RolEnum.DEFAULT));
             rolFactory.VerifyNoOtherCalls();
@@ -66,7 +66,7 @@ namespace AGT.Application.Users.Test
         [ExpectedException(typeof(ApplicationUsersException), AllowDerivedTypes = true)]
         public void SignUpDuplicatedParentExceptionTest()
         {
-            userDataAccess.Setup(r => r.Find(user)).Throws(new Exception());
+            unitOfWork.Setup(r => r.Users.Exists(user)).Returns(true);
 
             userService.SignUp(user);
         }
@@ -75,7 +75,7 @@ namespace AGT.Application.Users.Test
         [ExpectedException(typeof(UserAlreadyExistsException), AllowDerivedTypes = true)]
         public void SignUpDuplicatedChildExceptionTest()
         {
-            userDataAccess.Setup(r => r.Find(user)).Throws(new Exception());
+            unitOfWork.Setup(r => r.Users.Exists(user)).Returns(true);
 
             userService.SignUp(user);
         }

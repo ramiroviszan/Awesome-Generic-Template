@@ -9,6 +9,6 @@ namespace AGT.Contracts.Application.Users
 
     public interface IRolFactory
     {
-        IRol Create(RolEnum rolName);
+        Rol Create(RolEnum rolName);
     }
 }

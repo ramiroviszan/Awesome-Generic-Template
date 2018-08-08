@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AGT.Contracts.Application.Users
 {
-    public class ApplicationUsersException : Exception
+    public abstract class ApplicationUsersException : Exception
     {
         public ApplicationUsersException(string message) : base(message)
         {

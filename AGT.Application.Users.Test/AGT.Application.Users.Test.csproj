@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AGT.Application.Users\AGT.Application.Users.csproj" />
+    <ProjectReference Include="..\AGT.Contracts.Repository\AGT.Contracts.Repository.csproj" />
     <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
   </ItemGroup>
 

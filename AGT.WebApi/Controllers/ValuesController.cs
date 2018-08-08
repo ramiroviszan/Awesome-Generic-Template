@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AGT.Application.Users;
+using AGT.Contracts.Application.Users;
+using AGT.Domain.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AGT.WebApi.Controllers
@@ -10,10 +13,18 @@ namespace AGT.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IUserService userService;
+
+        public ValuesController(IUserService service)
+        {
+            userService = service;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            userService.SignUp(new User("juan123", "as@as.com", "juan", "perez", "asd", DateTime.Today));
             return new string[] { "value1", "value2" };
         }
 

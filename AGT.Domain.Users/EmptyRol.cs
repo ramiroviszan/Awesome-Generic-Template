@@ -4,20 +4,21 @@ using System.Text;
 
 namespace AGT.Domain.Users
 {
-    public class EmptyRol : IRol
+    public class EmptyRol : Rol
     {
+        public override int Id { get; protected set; }
         public string Name { get { return "Empty"; } }
 
-        public void AddFeature(IFeature feature)
+        public override void AddFeature(Feature feature)
         {
         }
 
-        public bool HasFeature(IFeature feature)
+        public override bool HasFeature(Feature feature)
         {
             return false;
         }
 
-        public void RemoveFeature(IFeature feature)
+        public override void RemoveFeature(Feature feature)
         {
         }
     }
