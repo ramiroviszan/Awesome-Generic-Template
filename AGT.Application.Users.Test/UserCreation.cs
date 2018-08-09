@@ -6,6 +6,7 @@ using System;
 using AGT.Contracts.Application.Users;
 using AGT.Application.Users.Exceptions;
 using AGT.Contracts.Repository;
+using AGT.Contracts.CrossCutting;
 
 namespace AGT.Application.Users.Test
 {
@@ -16,6 +17,7 @@ namespace AGT.Application.Users.Test
         private User user;
         private Mock<IUnitOfWork> unitOfWork;
         private Mock<IRolFactory> rolFactory;
+        private Mock<IHashGenerator> generator;
 
         [TestInitialize]
         public void SetUp()
@@ -23,7 +25,8 @@ namespace AGT.Application.Users.Test
             user = GetUser();
             unitOfWork = new Mock<IUnitOfWork>();
             rolFactory = new Mock<IRolFactory>();
-            userService = new UserService(unitOfWork.Object, rolFactory.Object);
+            generator = new Mock<IHashGenerator>();
+            userService = new UserService(unitOfWork.Object, rolFactory.Object, generator.Object);
         }
 
         private User GetUser()
@@ -52,12 +55,55 @@ namespace AGT.Application.Users.Test
             userService.SignUp(user);
 
             //To use VerifyNoOtherCalls we need to specify each Verify(method). VerifyAll or Verify() won't work
+            rolFactory.Verify(r => r.Create(RolEnum.DEFAULT));
+            rolFactory.VerifyNoOtherCalls();
+          
             unitOfWork.Verify(r => r.Users.Exists(user));
             unitOfWork.Verify(r => r.Users.Add(user));
+            unitOfWork.Verify(r => r.Complete());
             unitOfWork.VerifyNoOtherCalls();
+
+            Assert.IsTrue(user.Roles.Count == 1);
+        }
+
+        [TestMethod]
+        public void SignUpPasswordTest()
+        {
+            unitOfWork.Setup(r => r.Users.Exists(user)).Returns(false);
+
+            generator.Setup(g => g.GetRandomSalt());
+            generator.Setup(g => g.GetHash(It.IsAny<string>(), It.IsAny<byte[]>()));
+
+            userService.SignUp(user);
+
+            generator.Verify(g => g.GetRandomSalt());
+            generator.Verify(g => g.GetHash(It.IsAny<string>(), It.IsAny<byte[]>()));
+            generator.VerifyNoOtherCalls();
+
+        }
+
+        [TestMethod]
+        public void SignUpFullTest()
+        {
+            unitOfWork.Setup(r => r.Users.Exists(user)).Returns(false);
+            rolFactory.Setup(f => f.Create(RolEnum.DEFAULT));
+
+            generator.Setup(g => g.GetRandomSalt());
+            generator.Setup(g => g.GetHash(It.IsAny<string>(), It.IsAny<byte[]>()));
+
+            userService.SignUp(user);
+
+            generator.Verify(g => g.GetRandomSalt());
+            generator.Verify(g => g.GetHash(It.IsAny<string>(), It.IsAny<byte[]>()));
+            generator.VerifyNoOtherCalls();
 
             rolFactory.Verify(r => r.Create(RolEnum.DEFAULT));
             rolFactory.VerifyNoOtherCalls();
+
+            unitOfWork.Verify(r => r.Users.Exists(user));
+            unitOfWork.Verify(r => r.Users.Add(user));
+            unitOfWork.Verify(r => r.Complete());
+            unitOfWork.VerifyNoOtherCalls();
 
             Assert.IsTrue(user.Roles.Count == 1);
         }

@@ -2,6 +2,7 @@
 using AGT.Contracts.Application.Users;
 using AGT.Contracts.Repository;
 using AGT.Application.Users.Exceptions;
+using AGT.Contracts.CrossCutting;
 
 namespace AGT.Application.Users
 {
@@ -9,11 +10,13 @@ namespace AGT.Application.Users
     {
         private IUnitOfWork repositories;
         private IRolFactory rolFactory;
+        private IHashGenerator hashGenerator;
 
-        public UserService(IUnitOfWork unit, IRolFactory factory)
+        public UserService(IUnitOfWork unit, IRolFactory factory, IHashGenerator generator)
         {
             repositories = unit;
             rolFactory = factory;
+            hashGenerator = generator;
         }
 
         public User GetUser(int id)
@@ -34,9 +37,15 @@ namespace AGT.Application.Users
             {
                 throw new UserAlreadyExistsException();
             }
+
+            user.PasswordSalt = hashGenerator.GetRandomSalt();
+            user.Password = hashGenerator.GetHash(user.Password, user.PasswordSalt);
+
             user.AddRol(rolFactory.Create(RolEnum.DEFAULT));
+
             repositories.Users.Add(user);
             repositories.Complete();
+
             return user;
         }
 

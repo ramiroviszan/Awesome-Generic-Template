@@ -5,11 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AGT.Application.Users.Exceptions\AGT.Application.Users.Exceptions.csproj" />
     <ProjectReference Include="..\AGT.Contracts.Application.Users\AGT.Contracts.Application.Users.csproj" />
     <ProjectReference Include="..\AGT.Contracts.CrossCutting\AGT.Contracts.CrossCutting.csproj" />
-    <ProjectReference Include="..\AGT.Contracts.Repository\AGT.Contracts.Repository.csproj" />
-    <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.cryptography.keyderivation\2.1.1\lib\netcoreapp2.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

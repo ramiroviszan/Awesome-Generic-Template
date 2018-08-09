@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AGT.Application.Users;
 using AGT.Contracts.Application.Users;
+using AGT.Contracts.CrossCutting;
 using AGT.Contracts.Repository;
+using AGT.CrossCutting;
 using AGT.Domain.Users;
 using AGT.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -58,6 +60,7 @@ namespace AGT.WebApi
             services.AddDbContext<DomainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AGTDatabase")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRolFactory, RolFactory>();
+            services.AddScoped<IHashGenerator, HashGenerator>();
             services.AddScoped<IUserService, UserService>();
         }
 

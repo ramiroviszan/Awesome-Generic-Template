@@ -12,6 +12,7 @@ namespace AGT.Domain.Users
         public string Surname { get; set; }
         public DateTime Birthday { get; set; }
         public string Password { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public ICollection<Rol> Roles { get; set; }
         public string ProfileImage { get; set; }
 

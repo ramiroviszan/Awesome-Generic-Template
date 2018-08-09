@@ -11,21 +11,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Domain.Calendars", "AGT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Domain.Session", "AGT.Domain.Session\AGT.Domain.Session.csproj", "{BF38565C-9BE8-47F3-8891-27126D9B72D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users", "AGT.Application.Users\AGT.Application.Users.csproj", "{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Application.Users", "AGT.Application.Users\AGT.Application.Users.csproj", "{A7C4F36B-04B2-46D2-8A5A-6B9F45A96078}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users.Test", "AGT.Application.Users.Test\AGT.Application.Users.Test.csproj", "{289F62E8-9E92-4A35-BBD4-251137A217D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Application.Users.Test", "AGT.Application.Users.Test\AGT.Application.Users.Test.csproj", "{289F62E8-9E92-4A35-BBD4-251137A217D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Application.Users.Exceptions", "AGT.Application.Users.Exceptions\AGT.Application.Users.Exceptions.csproj", "{F77B0D79-AC66-42A9-B812-28EF2CE66273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Application.Users.Exceptions", "AGT.Application.Users.Exceptions\AGT.Application.Users.Exceptions.csproj", "{F77B0D79-AC66-42A9-B812-28EF2CE66273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Contracts.Application.Users", "AGT.Contracts.Application.Users\AGT.Contracts.Application.Users.csproj", "{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Contracts.Application.Users", "AGT.Contracts.Application.Users\AGT.Contracts.Application.Users.csproj", "{28CB4DA0-D29B-495A-BC37-1CBD7FFDBAA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Repository.Users", "AGT.Repository.Users\AGT.Repository.Users.csproj", "{3838172A-39AD-44AE-ADD3-3A96C0D39FD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Repository.Users", "AGT.Repository.Users\AGT.Repository.Users.csproj", "{3838172A-39AD-44AE-ADD3-3A96C0D39FD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Repository", "AGT.Repository\AGT.Repository.csproj", "{FC7A0230-A18F-4994-A9AB-FA53F6566EFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Repository", "AGT.Repository\AGT.Repository.csproj", "{FC7A0230-A18F-4994-A9AB-FA53F6566EFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Contracts.Repository", "AGT.Contracts.Repository\AGT.Contracts.Repository.csproj", "{EE20C2A3-616A-49FC-A72C-9C473D055819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Contracts.Repository", "AGT.Contracts.Repository\AGT.Contracts.Repository.csproj", "{EE20C2A3-616A-49FC-A72C-9C473D055819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Repository.Exceptions", "AGT.Repository.Exceptions\AGT.Repository.Exceptions.csproj", "{B695E4C4-9A45-4BB3-8CDD-8EA9B029FE7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AGT.Repository.Exceptions", "AGT.Repository.Exceptions\AGT.Repository.Exceptions.csproj", "{B695E4C4-9A45-4BB3-8CDD-8EA9B029FE7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.CrossCutting", "AGT.CrossCutting\AGT.CrossCutting.csproj", "{7E322DA6-5A8F-4EDA-ABC3-B7F201C687F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGT.Contracts.CrossCutting", "AGT.Contracts.CrossCutting\AGT.Contracts.CrossCutting.csproj", "{C1229CCA-58BE-4E3B-A63D-F9E6FC345CEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,14 @@ Global
 		{B695E4C4-9A45-4BB3-8CDD-8EA9B029FE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B695E4C4-9A45-4BB3-8CDD-8EA9B029FE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B695E4C4-9A45-4BB3-8CDD-8EA9B029FE7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E322DA6-5A8F-4EDA-ABC3-B7F201C687F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E322DA6-5A8F-4EDA-ABC3-B7F201C687F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E322DA6-5A8F-4EDA-ABC3-B7F201C687F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E322DA6-5A8F-4EDA-ABC3-B7F201C687F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1229CCA-58BE-4E3B-A63D-F9E6FC345CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1229CCA-58BE-4E3B-A63D-F9E6FC345CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1229CCA-58BE-4E3B-A63D-F9E6FC345CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1229CCA-58BE-4E3B-A63D-F9E6FC345CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

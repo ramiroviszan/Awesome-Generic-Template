@@ -14,12 +14,12 @@ namespace AGT.WebApi.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class UserImagesController : Controller
+    public class UsersImagesController : Controller
     {
         private readonly IUserService userService;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public UserImagesController(IUserService service, IHostingEnvironment environment)
+        public UsersImagesController(IUserService service, IHostingEnvironment environment)
         {
             userService = service;
             hostingEnvironment = environment;
