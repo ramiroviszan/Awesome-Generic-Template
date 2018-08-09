@@ -8,8 +8,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="Moq" Version="4.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AGT.Application.Sessions\AGT.Application.Sessions.csproj" />
+    <ProjectReference Include="..\AGT.Contracts.Application.Sessions\AGT.Contracts.Application.Sessions.csproj" />
+    <ProjectReference Include="..\AGT.Contracts.CrossCutting\AGT.Contracts.CrossCutting.csproj" />
+    <ProjectReference Include="..\AGT.Contracts.Repository\AGT.Contracts.Repository.csproj" />
+    <ProjectReference Include="..\AGT.Domain.Sessions\AGT.Domain.Sessions.csproj" />
   </ItemGroup>
 
 </Project>
