@@ -43,7 +43,7 @@ namespace AGT.WebApi.Controllers
 
             try
             {
-                var user = userService.AddProfileImage(id, image.RemoteLink);
+                var user = userService.ChangeProfileImage(id, image.RemoteLink);
                 return Ok(user);
             } catch (ApplicationUsersException ex)
             {

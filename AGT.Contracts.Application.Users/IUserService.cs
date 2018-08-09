@@ -6,6 +6,6 @@ namespace AGT.Contracts.Application.Users
     {
         User GetUser(int id);
         User SignUp(User user);
-        User AddProfileImage(int id, string path);
+        User ChangeProfileImage(int id, string path);
     }
 }

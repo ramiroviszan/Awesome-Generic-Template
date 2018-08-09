@@ -40,7 +40,7 @@ namespace AGT.Application.Users
             return user;
         }
 
-        public User AddProfileImage(int id, string path)
+        public User ChangeProfileImage(int id, string path)
         {
             var user = GetUser(id);
             user.ProfileImage = path;
