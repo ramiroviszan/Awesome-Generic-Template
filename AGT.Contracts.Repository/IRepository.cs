@@ -8,7 +8,7 @@ namespace AGT.Contracts.Repository
     public interface IRepository<T> where T : class
     {
         bool Exists(T entity);
-        T Find(T entity);
+        T Find(int id);
         IEnumerable<T> FindAll();
         IEnumerable<T> FindAllByFilter(Expression<Func<T, bool>> expression);
         void Add(T entity);

@@ -16,7 +16,19 @@ namespace AGT.Application.Users
             rolFactory = factory;
         }
 
-        public void SignUp(User user)
+        public User GetUser(int id)
+        {
+            try
+            {
+                var user = repositories.Users.Find(id);
+                return user;
+            } catch (RepositoryException e)
+            {
+                throw new UserNotFoundException(e);
+            }
+        }
+
+        public User SignUp(User user)
         {
             if(repositories.Users.Exists(user))
             {
@@ -24,6 +36,8 @@ namespace AGT.Application.Users
             }
             user.AddRol(rolFactory.Create(RolEnum.DEFAULT));
             repositories.Users.Add(user);
+            repositories.Complete();
+            return user;
         }
     }
 }

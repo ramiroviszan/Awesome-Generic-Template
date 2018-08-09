@@ -6,16 +6,16 @@ namespace AGT.Domain.Users
     public class User
     {
         public int Id { get; private set; }
-        public string Username { get; private set; }
-        public string Email { get; private set; }
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public DateTime Birthday { get; private set; }
-        private string Password { get; set; }
-        public ICollection<Rol> Roles { get; private set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Password { get; set; }
+        public ICollection<Rol> Roles { get; set; }
 
-        private User() { 
-            //Leave if for any Relfection based system that might need it
+        public User() {
+            Roles = new List<Rol>();
         }
 
         public User(string username, string email, string name, string surname, string password, DateTime birthday)
@@ -38,7 +38,7 @@ namespace AGT.Domain.Users
         {
             if(obj is User)
             {
-                User other = obj as User;
+                var other = obj as User;
                 return Username.Equals(other.Username) && Password.Equals(other.Password);
             }
             return false;

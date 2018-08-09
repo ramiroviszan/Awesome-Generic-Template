@@ -1,10 +1,30 @@
-﻿namespace AGT.Domain.Users
+﻿using System.Collections.Generic;
+
+namespace AGT.Domain.Users
 {
     public abstract class Rol
     {
-        public abstract int Id { get; protected set; }
-        public abstract void AddFeature(Feature feature);
-        public abstract bool HasFeature(Feature feature);
-        public abstract void RemoveFeature(Feature feature);
+        public int Id { get; private set; }
+        public ICollection<Feature> Features { get; private set; }
+
+        public Rol()
+        {
+            Features = new List<Feature>();
+        }
+
+        public virtual void AddFeature(Feature feature)
+        {
+            Features.Add(feature);
+        }
+
+        public virtual bool HasFeature(Feature feature)
+        {
+            return Features.Contains(feature);
+        }
+
+        public virtual void RemoveFeature(Feature feature)
+        {
+            Features.Remove(feature);
+        }
     }
 }

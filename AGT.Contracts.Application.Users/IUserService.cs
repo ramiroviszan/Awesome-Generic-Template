@@ -4,6 +4,7 @@ namespace AGT.Contracts.Application.Users
 {
     public interface IUserService
     {
-        void SignUp(User user);
+        User GetUser(int id);
+        User SignUp(User user);
     }
 }

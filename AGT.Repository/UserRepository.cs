@@ -4,6 +4,7 @@ using AGT.Repository;
 using AGT.Contracts.Repository;
 using AGT.Repository.Exceptions;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AGT.Repository
 {
@@ -16,13 +17,18 @@ namespace AGT.Repository
 
         public override bool Exists(User entity)
         {
-            User result = Context.Set<User>().FirstOrDefault(e => e.Equals(entity));
+            var result = Context.Set<User>().FirstOrDefault(e => e.Equals(entity));
+
             return result != null;
         }
 
-        public override User Find(User entity)
+        public override User Find(int id)
         {
-            User result = Context.Set<User>().Find(entity.Id);
+            var result = Context.Set<User>()
+                .Include(u => u.Roles)
+                .ThenInclude(r => r.Features)
+                .FirstOrDefault(u => u.Id.Equals(id));
+
             if (result is null)
             {
                 throw new EntityNotFoundException();
