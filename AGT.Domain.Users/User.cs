@@ -13,6 +13,7 @@ namespace AGT.Domain.Users
         public DateTime Birthday { get; set; }
         public string Password { get; set; }
         public ICollection<Rol> Roles { get; set; }
+        public string ProfileImage { get; set; }
 
         public User() {
             Roles = new List<Rol>();

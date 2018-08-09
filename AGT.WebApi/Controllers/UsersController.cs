@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AGT.Application.Users;
 using AGT.Contracts.Application.Users;
 using AGT.Domain.Users;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AGT.WebApi.Controllers
@@ -13,9 +17,10 @@ namespace AGT.WebApi.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService userService;
+        private readonly IUserService userService;
 
-        public UsersController(IUserService service)
+
+        public UsersController(IUserService service, IHostingEnvironment environment)
         {
             userService = service;
         }
@@ -46,5 +51,7 @@ namespace AGT.WebApi.Controllers
                 return BadRequest(e);
             }
         }
+
+
     }
 }

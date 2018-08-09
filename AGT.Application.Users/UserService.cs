@@ -39,5 +39,15 @@ namespace AGT.Application.Users
             repositories.Complete();
             return user;
         }
+
+        public User AddProfileImage(int id, string path)
+        {
+            var user = GetUser(id);
+            user.ProfileImage = path;
+            repositories.Complete();
+
+            return user;
+        }
+
     }
 }

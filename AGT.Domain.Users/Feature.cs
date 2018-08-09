@@ -6,7 +6,7 @@ namespace AGT.Domain.Users
     {
         public int Id { get; private set; }
         public string Name { get; private set; }
-        public string Value { get; private set; }
+        public bool Value { get; private set; }
 
         private Feature()
         {
