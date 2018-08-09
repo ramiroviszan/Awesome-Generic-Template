@@ -11,7 +11,7 @@ using AGT.Contracts.CrossCutting;
 namespace AGT.Application.Users.Test
 {
     [TestClass]
-    public class UserCreation
+    public class UserCreationTest
     {
         private IUserService userService;
         private User user;
