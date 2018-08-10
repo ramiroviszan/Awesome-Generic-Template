@@ -37,7 +37,7 @@ namespace AGT.Application.Sessions
             }
             else
             {
-                throw new InvalidCredentialsException();
+                throw new InvalidLoginCredentialsException();
             }
             return session;
         }
@@ -51,7 +51,7 @@ namespace AGT.Application.Sessions
             }
             catch (RepositoryException ex)
             {
-                throw new InvalidCredentialsException();
+                throw new InvalidLoginCredentialsException();
             }
         }
 

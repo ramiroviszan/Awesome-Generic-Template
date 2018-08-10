@@ -1,3 +1,4 @@
+using AGT.Application.Sessions.Exceptions;
 using AGT.Contracts.Application.Sessions;
 using AGT.Contracts.CrossCutting;
 using AGT.Contracts.Repository;
@@ -50,6 +51,28 @@ namespace AGT.Application.Sessions.Test
             unitOfWork.VerifyNoOtherCalls();
 
             Assert.AreEqual("token", session.Token);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ApplicationSessionsException), AllowDerivedTypes = true)]
+        public void LoginFailedParentExceptionTest()
+        {
+            var session = new Session() { Username = databaseUser.Username, Password = databaseUser.Password, Agent = "Chrome", Device = "Laptop" };
+
+            unitOfWork.Setup(r => r.Users.Find(It.IsAny<User>())).Returns(databaseUser);
+            generator.Setup(g => g.GetHash(databaseUser.Password, databaseUser.PasswordSalt)).Returns("other");
+            session = sessionService.Login(session);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidLoginCredentialsException), AllowDerivedTypes = true)]
+        public void LoginFailedChildExceptionTest()
+        {
+            var session = new Session() { Username = databaseUser.Username, Password = databaseUser.Password, Agent = "Chrome", Device = "Laptop" };
+
+            unitOfWork.Setup(r => r.Users.Find(It.IsAny<User>())).Returns(databaseUser);
+            generator.Setup(g => g.GetHash(databaseUser.Password, databaseUser.PasswordSalt)).Returns("other");
+            session = sessionService.Login(session);
         }
     }
 }

@@ -5,11 +5,10 @@ using System.Runtime.Serialization;
 namespace AGT.Application.Sessions.Exceptions
 {
     [Serializable]
-    internal class InvalidCredentialsException : ApplicationSessionsException
+    public class InvalidLoginCredentialsException : ApplicationSessionsException
     {
-        public InvalidCredentialsException() : base("Invalid username and password")
+        public InvalidLoginCredentialsException() : base("Invalid username and password")
         {
         }
-
     }
 }
