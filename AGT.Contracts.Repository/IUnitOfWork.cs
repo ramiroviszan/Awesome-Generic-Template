@@ -6,7 +6,8 @@ namespace AGT.Contracts.Repository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserRepository Users { get; }
+        IUsersRepository Users { get; }
+        ISessionsRepository Sessions { get; }
         void Complete();
     }
 }

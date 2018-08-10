@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AGT.Contracts.Application.Sessions\AGT.Contracts.Application.Sessions.csproj" />
     <ProjectReference Include="..\AGT.Contracts.Application.Users\AGT.Contracts.Application.Users.csproj" />
     <ProjectReference Include="..\AGT.Contracts.CrossCutting\AGT.Contracts.CrossCutting.csproj" />
     <ProjectReference Include="..\AGT.Contracts.Repository\AGT.Contracts.Repository.csproj" />
-    <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
   </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ namespace AGT.WebApi.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersImagesController : Controller
+    public class UsersImagesController : ControllerBase
     {
         private readonly IUserService userService;
         private readonly IHostingEnvironment hostingEnvironment;

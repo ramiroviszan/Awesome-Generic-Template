@@ -31,22 +31,25 @@ namespace AGT.Application.Sessions.Test
         public void LoginSucessTest()
         {
             var session = new Session() { Username = databaseUser.Username, Password = databaseUser.Password, Agent = "Chrome", Device = "Laptop" };
-            var loginUser = new Mock<User>().Object;
-            loginUser.Username = session.Username;
-            loginUser.Password = session.Password;
 
-            unitOfWork.Setup(r => r.Users.Find(loginUser)).Returns(databaseUser);
+            unitOfWork.Setup(r => r.Users.Find(It.IsAny<User>())).Returns(databaseUser);
             generator.Setup(g => g.GetHash(databaseUser.Password, databaseUser.PasswordSalt)).Returns(databaseUser.Password);
-
+            generator.Setup(g => g.GetRandomSalt()).Returns(It.IsAny<byte[]>());
+            generator.Setup(g => g.GetHash(session.Username, It.IsAny<byte[]>())).Returns("token");
             unitOfWork.Setup(r => r.Sessions.Add(session));
 
-            sessionService.Login(session);
+            session = sessionService.Login(session);
 
-            unitOfWork.Verify(r => r.Users.Find(loginUser));
+            unitOfWork.Verify(r => r.Users.Find(It.IsAny<User>()));
             generator.Verify(g => g.GetHash(databaseUser.Password, databaseUser.PasswordSalt));
+            generator.Verify(g => g.GetRandomSalt());
+            generator.Verify(g => g.GetHash(session.Username, It.IsAny<byte[]>()));
             generator.VerifyNoOtherCalls();
             unitOfWork.Verify(r => r.Sessions.Add(session));
+            unitOfWork.Verify(r => r.Complete());
             unitOfWork.VerifyNoOtherCalls();
+
+            Assert.AreEqual("token", session.Token);
         }
     }
 }

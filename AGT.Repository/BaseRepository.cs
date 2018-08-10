@@ -19,6 +19,7 @@ namespace AGT.Repository
 
         public abstract bool Exists(T entity);
         public abstract T Find(int id);
+        public abstract T Find(T entity);
 
         public IEnumerable<T> FindAll()
         {

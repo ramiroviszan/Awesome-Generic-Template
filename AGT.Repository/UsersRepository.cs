@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AGT.Repository
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UsersRepository : BaseRepository<User>, IUsersRepository
     {
    
-        public UserRepository(DomainContext context) : base(context)
+        public UsersRepository(DomainContext context) : base(context)
         {
         }
 
@@ -25,7 +25,7 @@ namespace AGT.Repository
         public override User Find(int id)
         {
             var result = Context.Set<User>()
-                .Include(u => u.Roles)
+                .Include(e => e.Roles)
                 .ThenInclude(r => r.Features)
                 .FirstOrDefault(u => u.Id.Equals(id));
 
@@ -33,6 +33,12 @@ namespace AGT.Repository
             {
                 throw new EntityNotFoundException();
             }
+            return result;
+        }
+
+        public override User Find(User entity)
+        {
+            var result = Context.Set<User>().FirstOrDefault(e => e.Equals(entity));
             return result;
         }
 

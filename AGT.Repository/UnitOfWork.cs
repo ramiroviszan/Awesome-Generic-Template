@@ -9,12 +9,15 @@ namespace AGT.Repository
     {
         private readonly DomainContext context;
 
-        public IUserRepository Users { get; private set; }
+        public IUsersRepository Users { get; private set; }
+
+        public ISessionsRepository Sessions { get; private set; }
 
         public UnitOfWork(DomainContext aContext)
         {
             context = aContext;
-            Users = new UserRepository(context);
+            Users = new UsersRepository(context);
+            Sessions = new SessionsRepository(context);
         }
      
         public void Dispose()

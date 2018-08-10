@@ -41,7 +41,7 @@ namespace AGT.Domain.Users
             if(obj is User)
             {
                 var other = obj as User;
-                return Username.Equals(other.Username) && Password.Equals(other.Password);
+                return Username.Equals(other.Username);
             }
             return false;
         }

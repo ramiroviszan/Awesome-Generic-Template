@@ -19,8 +19,7 @@ namespace AGT.WebApi.Controllers
     {
         private readonly IUserService userService;
 
-
-        public UsersController(IUserService service, IHostingEnvironment environment)
+        public UsersController(IUserService service)
         {
             userService = service;
         }

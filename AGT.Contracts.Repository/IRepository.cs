@@ -9,6 +9,7 @@ namespace AGT.Contracts.Repository
     {
         bool Exists(T entity);
         T Find(int id);
+        T Find(T entity);
         IEnumerable<T> FindAll();
         IEnumerable<T> FindAllByFilter(Expression<Func<T, bool>> expression);
         void Add(T entity);

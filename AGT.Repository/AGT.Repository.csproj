@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AGT.Contracts.Repository\AGT.Contracts.Repository.csproj" />
+    <ProjectReference Include="..\AGT.Domain.Sessions\AGT.Domain.Sessions.csproj" />
     <ProjectReference Include="..\AGT.Domain.Users\AGT.Domain.Users.csproj" />
-    <ProjectReference Include="..\AGT.Repository.Exceptions\AGT.Repository.Exceptions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
