@@ -7,7 +7,7 @@ using AGT.Domain.Users;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-
+using System.Linq.Expressions;
 
 namespace AGT.Application.Sessions.Test
 {
@@ -73,6 +73,25 @@ namespace AGT.Application.Sessions.Test
             unitOfWork.Setup(r => r.Users.Find(It.IsAny<User>())).Returns(databaseUser);
             generator.Setup(g => g.GetHash(databaseUser.Password, databaseUser.PasswordSalt)).Returns("other");
             session = sessionService.Login(session);
+        }
+
+        [TestMethod]
+        public void LogoutTest()
+        {
+            var session = new Session() { Token = "token", Username = "User1" };
+
+            unitOfWork.Setup(r => r.Sessions.Find(session)).Returns(session);
+            unitOfWork.Setup(r => r.Sessions.FindAllByFilter(It.IsAny<Expression<Func<Session, bool>>>())).Returns(new Session[0]);
+
+            var count = sessionService.Logout(session);
+
+            unitOfWork.Verify(r => r.Sessions.Find(session));
+            unitOfWork.Verify(r => r.Complete());
+            unitOfWork.Verify(r => r.Sessions.FindAllByFilter(It.IsAny<Expression<Func<Session, bool>>>()));
+            unitOfWork.VerifyNoOtherCalls();
+
+            Assert.IsTrue(session.Deleted);
+            Assert.AreEqual(0, count);
         }
     }
 }

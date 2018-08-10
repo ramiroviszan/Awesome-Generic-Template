@@ -23,11 +23,11 @@ namespace AGT.WebApi.Controllers
 
 
         [HttpGet]
-        public IActionResult Get(Session session)
+        public IActionResult Get([FromHeader] string session)
         {
             try
             {
-                var allSessions = sessionService.GetAllSessions(session);
+                var allSessions = sessionService.GetAllSessions(new Session() { Token = session });
                 return Ok(allSessions);
             }
             catch (ApplicationUsersException e)
@@ -37,7 +37,7 @@ namespace AGT.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(Session session)
+        public IActionResult Login([FromBody] Session session)
         {
             try
             {
@@ -51,11 +51,11 @@ namespace AGT.WebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Logout(Session session)
+        public IActionResult Logout([FromHeader] string session)
         {
             try
             {
-                var sessionCount = sessionService.Logout(session);
+                var sessionCount = sessionService.Logout(new Session() { Token = session });
                 return Ok(sessionCount);
             }
             catch (ApplicationUsersException e)

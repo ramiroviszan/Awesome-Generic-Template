@@ -1,4 +1,5 @@
-﻿using AGT.Domain.Users;
+﻿using AGT.Domain.Sessions;
+using AGT.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace AGT.Repository
@@ -6,6 +7,7 @@ namespace AGT.Repository
     public class DomainContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
         public DomainContext(DbContextOptions options) : base(options)
         {
@@ -26,6 +28,9 @@ namespace AGT.Repository
 
             modelBuilder.Entity<Feature>().HasKey(f => f.Id);
             modelBuilder.Entity<Feature>().HasAlternateKey(f => new { f.Name, f.Value });
+
+            modelBuilder.Entity<Session>().HasKey(s => s.Token);
+            modelBuilder.Entity<Session>().Property(s => s.Username).IsRequired();
         }
     }
 }

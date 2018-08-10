@@ -18,26 +18,23 @@ namespace AGT.Repository
 
         public override bool Exists(Session entity)
         {
-            var result = Context.Set<Session>().FirstOrDefault(e => e.Equals(entity));
+            var result = Context.Set<Session>().FirstOrDefault(e => e.Token == entity.Token);
 
             return result != null;
         }
 
         public override Session Find(int id)
         {
-            var result = Context.Set<Session>()
-                .FirstOrDefault(e => e.Id.Equals(id));
-
-            if (result is null)
-            {
-                throw new EntityNotFoundException();
-            }
-            return result;
+            throw new EntityNotFoundException();
         }
 
         public override Session Find(Session entity)
         {
-            var result = Context.Set<Session>().FirstOrDefault(e => e.Equals(entity));
+            var result = Context.Set<Session>().FirstOrDefault(e => e.Token == entity.Token);
+            if (result is null)
+            {
+                throw new EntityNotFoundException();
+            }
             return result;
         }
 

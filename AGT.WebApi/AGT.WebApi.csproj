@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AGT.Application.Sessions\AGT.Application.Sessions.csproj" />
     <ProjectReference Include="..\AGT.Application.Users\AGT.Application.Users.csproj" />
     <ProjectReference Include="..\AGT.Contracts.Application.Sessions\AGT.Contracts.Application.Sessions.csproj" />
     <ProjectReference Include="..\AGT.CrossCutting\AGT.CrossCutting.csproj" />

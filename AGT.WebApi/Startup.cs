@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AGT.Application.Sessions;
 using AGT.Application.Users;
+using AGT.Contracts.Application.Sessions;
 using AGT.Contracts.Application.Users;
 using AGT.Contracts.CrossCutting;
 using AGT.Contracts.Repository;
@@ -62,6 +64,7 @@ namespace AGT.WebApi
             services.AddScoped<IRolFactory, RolFactory>();
             services.AddScoped<IHashGenerator, HashGenerator>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISessionService, SessionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

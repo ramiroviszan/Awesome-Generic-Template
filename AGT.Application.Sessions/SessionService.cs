@@ -7,6 +7,7 @@ using AGT.Domain.Sessions;
 using AGT.Domain.Users;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AGT.Application.Sessions
 {
@@ -49,7 +50,7 @@ namespace AGT.Application.Sessions
                 var databaseUser = repositories.Users.Find(new User() { Username = session.Username });
                 return databaseUser;
             }
-            catch (RepositoryException ex)
+            catch (RepositoryException)
             {
                 throw new InvalidLoginCredentialsException();
             }
@@ -60,13 +61,33 @@ namespace AGT.Application.Sessions
             session.Password = null;
             var sessionSalt = hashGenerator.GetRandomSalt();
             session.Token = hashGenerator.GetHash(session.Username, sessionSalt);
+            session.Creation = DateTime.Now;
             repositories.Sessions.Add(session);
             repositories.Complete();
         }
 
         public int Logout(Session session)
         {
-            throw new NotImplementedException();
+            try
+            {
+                session = repositories.Sessions.Find(session);
+                session.Deleted = true;
+                repositories.Complete();
+            }
+            catch (RepositoryException ex)
+            {
+                throw new LogoutFailedException(ex);
+            }
+
+            try
+            {
+                var count = repositories.Sessions.FindAllByFilter(s => session.Username.Equals(s.Username) && !s.Deleted);
+                return count.Count();
+            }
+            catch (RepositoryException)
+            {
+                return -1;     
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ namespace AGT.Repository
 
         public override bool Exists(User entity)
         {
-            var result = Context.Set<User>().FirstOrDefault(e => e.Equals(entity));
+            var result = Context.Set<User>().FirstOrDefault(e => e.Username == entity.Username);
 
             return result != null;
         }
@@ -38,7 +38,11 @@ namespace AGT.Repository
 
         public override User Find(User entity)
         {
-            var result = Context.Set<User>().FirstOrDefault(e => e.Equals(entity));
+            var result = Context.Set<User>().FirstOrDefault(e => e.Username == entity.Username);
+            if (result is null)
+            {
+                throw new EntityNotFoundException();
+            }
             return result;
         }
 
