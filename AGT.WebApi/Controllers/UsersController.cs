@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AGT.Application.Users;
 using AGT.Contracts.Application.Users;
 using AGT.Domain.Users;
+using AGT.WebApi.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,7 @@ namespace AGT.WebApi.Controllers
             try
             {
                 var user = userService.GetUser(id);
-                return Ok(user);
+                return Ok(UserModel.ToModel(user));
             }
             catch (ApplicationUsersException e)
             {
@@ -39,12 +40,12 @@ namespace AGT.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] User user)
+        public IActionResult Post([FromBody] UserModel user)
         {
             try
             {
-                var addedUser = userService.SignUp(user);
-                return CreatedAtRoute("GetById", new { id = addedUser.Id }, addedUser);
+                var addedUser = userService.SignUp(UserModel.ToEntity(user));
+                return CreatedAtRoute("GetById", new { id = addedUser.Id }, UserModel.ToModel(addedUser));
             } catch(ApplicationUsersException e)
             {
                 return BadRequest(e.Message);

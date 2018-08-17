@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AGT.Contracts.Application.Sessions;
 using AGT.Domain.Sessions;
+using AGT.WebApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace AGT.WebApi.Controllers
             {
                 string token = Response.Headers["X-Auth-Token"];
                 var allSessions = sessionService.GetAllSessions(new Session() { Token = token });
-                return Ok(allSessions);
+                return Ok(SessionModel.ToModel(allSessions));
             }
             catch (ApplicationSessionsException e)
             {
@@ -43,7 +44,7 @@ namespace AGT.WebApi.Controllers
             {
                 var fullSession = sessionService.Login(session);
                 Response.Headers.Add("X-Auth-Token", fullSession.Token);
-                return Ok();
+                return Ok(SessionModel.ToModel(fullSession));
             }
             catch (ApplicationSessionsException e)
             {
