@@ -59,7 +59,8 @@ namespace AGT.WebApi
                 });
 
 
-            services.AddDbContext<DomainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AGTDatabase")));
+            //services.AddDbContext<DomainContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AGTDatabase")));
+            services.AddDbContext<DomainContext>(options => options.UseInMemoryDatabase(Configuration.GetConnectionString("AGTDatabase")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRolFactory, RolFactory>();
             services.AddScoped<IHashGenerator, HashGenerator>();
