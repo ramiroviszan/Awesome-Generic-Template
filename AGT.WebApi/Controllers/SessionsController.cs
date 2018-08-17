@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AGT.Contracts.Application.Sessions;
-using AGT.Contracts.Application.Users;
 using AGT.Domain.Sessions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,16 +22,17 @@ namespace AGT.WebApi.Controllers
 
 
         [HttpGet]
-        public IActionResult Get([FromHeader] string session)
+        public IActionResult Get()
         {
             try
             {
-                var allSessions = sessionService.GetAllSessions(new Session() { Token = session });
+                string token = Response.Headers["X-Auth-Token"];
+                var allSessions = sessionService.GetAllSessions(new Session() { Token = token });
                 return Ok(allSessions);
             }
-            catch (ApplicationUsersException e)
+            catch (ApplicationSessionsException e)
             {
-                return NotFound(e);
+                return NotFound(e.Message);
             }
         }
 
@@ -42,25 +42,27 @@ namespace AGT.WebApi.Controllers
             try
             {
                 var fullSession = sessionService.Login(session);
-                return Ok(fullSession);
+                Response.Headers.Add("X-Auth-Token", fullSession.Token);
+                return Ok();
             }
-            catch (ApplicationUsersException e)
+            catch (ApplicationSessionsException e)
             {
-                return NotFound(e);
+                return NotFound(e.Message);
             }
         }
 
         [HttpDelete]
-        public IActionResult Logout([FromHeader] string session)
+        public IActionResult Logout()
         {
             try
             {
-                var sessionCount = sessionService.Logout(new Session() { Token = session });
+                string token = Request.Headers["X-Auth-Token"];
+                var sessionCount = sessionService.Logout(new Session() { Token = token });
                 return Ok(sessionCount);
             }
-            catch (ApplicationUsersException e)
+            catch (ApplicationSessionsException e)
             {
-                return NotFound(e);
+                return NotFound(e.Message);
             }
         }
     }

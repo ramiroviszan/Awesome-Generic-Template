@@ -34,7 +34,7 @@ namespace AGT.WebApi.Controllers
             }
             catch (ApplicationUsersException e)
             {
-                return NotFound(e);
+                return NotFound(e.Message);
             }
         }
 
@@ -47,7 +47,7 @@ namespace AGT.WebApi.Controllers
                 return CreatedAtRoute("GetById", new { id = addedUser.Id }, addedUser);
             } catch(ApplicationUsersException e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
