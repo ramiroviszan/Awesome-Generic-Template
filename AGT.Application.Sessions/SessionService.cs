@@ -29,6 +29,13 @@ namespace AGT.Application.Sessions
 
         public Session Login(Session session)
         {
+           try {
+               return TryLogin(session);
+           } catch (RepositoryException e) {
+               throw new LoginFailedException(e);
+           }
+        }
+        protected virtual Session TryLogin(Session session) {
             var databaseUser = GetUserFromDatabase(session);
             var password = hashGenerator.GetHash(session.Password, databaseUser.PasswordSalt);
 
@@ -42,7 +49,6 @@ namespace AGT.Application.Sessions
             }
             return session;
         }
-
         private User GetUserFromDatabase(Session session)
         {
             try
@@ -55,13 +61,13 @@ namespace AGT.Application.Sessions
                 throw new InvalidLoginCredentialsException();
             }
         }
-
         private void CreateSession(Session session)
         {
             session.Password = null;
             var sessionSalt = hashGenerator.GetRandomSalt();
             session.Token = hashGenerator.GetHash(session.Username, sessionSalt);
             session.Creation = DateTime.Now;
+            session.LastAccess = session.Creation;
             repositories.Sessions.Add(session);
             repositories.Complete();
         }
@@ -70,24 +76,35 @@ namespace AGT.Application.Sessions
         {
             try
             {
-                session = repositories.Sessions.Find(session);
-                session.Deleted = true;
-                repositories.Complete();
+                session = TryLogout(session);
+                return GetSessionCountLeft(session);
             }
-            catch (RepositoryException ex)
+            catch (RepositoryException e)
             {
-                throw new LogoutFailedException(ex);
+                throw new LogoutFailedException(e);
             }
-
+        }
+        protected virtual Session TryLogout(Session session)
+        {
+            session = repositories.Sessions.Find(session);
+            session.Deleted = true;
+            repositories.Complete();
+            return session;
+        }
+        protected virtual int GetSessionCountLeft(Session session) {
             try
             {
-                var count = repositories.Sessions.FindAllByFilter(s => session.Username.Equals(s.Username) && !s.Deleted);
-                return count.Count();
+              return TryGetSessionCountLeft(session);
             }
             catch (RepositoryException)
             {
                 return -1;     
             }
+        }
+        private int TryGetSessionCountLeft(Session session)
+        {
+            var count = repositories.Sessions.FindAllByFilter(s => session.Username.Equals(s.Username) && !s.Deleted);
+            return count.Count();
         }
     }
 }

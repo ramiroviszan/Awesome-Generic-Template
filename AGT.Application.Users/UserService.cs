@@ -23,16 +23,28 @@ namespace AGT.Application.Users
         {
             try
             {
-                var user = repositories.Users.Find(id);
-                return user;
+                return TryGetUser(id);
             } catch (RepositoryException e)
             {
                 throw new UserNotFoundException(e);
             }
         }
+        protected virtual User TryGetUser(int id) {
+            var user = repositories.Users.Find(id);
+            return user;
+        }
 
         public User SignUp(User user)
         {
+            try
+            {
+                return TrySignUp(user);
+            } catch (RepositoryException e)
+            {
+                throw new UserSignUpException(e);
+            }
+        }
+        protected virtual User TrySignUp(User user) {
             if(repositories.Users.Exists(user))
             {
                 throw new UserAlreadyExistsException();
@@ -51,10 +63,18 @@ namespace AGT.Application.Users
 
         public User ChangeProfileImage(int id, string path)
         {
+            try
+            {
+                return TryChangeProfileImage(id, path);
+            } catch (RepositoryException e)
+            {
+                throw new UserChangeProfileImageException(e);
+            }
+        }
+        protected virtual User TryChangeProfileImage(int id, string path) {
             var user = GetUser(id);
             user.ProfileImage = path;
             repositories.Complete();
-
             return user;
         }
 

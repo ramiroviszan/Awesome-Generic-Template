@@ -6,11 +6,12 @@ namespace AGT.Application.Sessions.Exceptions
 {
     public class LogoutFailedException : ApplicationSessionsException
     {
-        public LogoutFailedException() : base("Failed to end session")
+        private const string MESSAGE = "Failed to end session";
+        public LogoutFailedException() : base(MESSAGE)
         {
         }
 
-        public LogoutFailedException(Exception inner) : base("Failed to end session", inner)
+        public LogoutFailedException(Exception inner) : base(MESSAGE, inner)
         {
         }
     }
