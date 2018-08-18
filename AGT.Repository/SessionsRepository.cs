@@ -16,19 +16,19 @@ namespace AGT.Repository
         {
         }
 
-        public override bool Exists(Session entity)
+        protected override bool TryExists(Session entity)
         {
             var result = Context.Set<Session>().FirstOrDefault(e => e.Token == entity.Token);
 
             return result != null;
         }
 
-        public override Session Find(int id)
+        protected override Session TryFind(int id)
         {
             throw new EntityNotFoundException();
         }
 
-        public override Session Find(Session entity)
+        protected override Session TryFind(Session entity)
         {
             var result = Context.Set<Session>().FirstOrDefault(e => e.Token == entity.Token);
             if (result is null)
@@ -36,11 +36,6 @@ namespace AGT.Repository
                 throw new EntityNotFoundException();
             }
             return result;
-        }
-
-        private DomainContext DomainContext
-        {
-            get { return Context as DomainContext; }
         }
     }
 }

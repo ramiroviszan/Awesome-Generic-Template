@@ -15,14 +15,13 @@ namespace AGT.Repository
         {
         }
 
-        public override bool Exists(User entity)
+        protected override bool TryExists(User entity)
         {
             var result = Context.Set<User>().FirstOrDefault(e => e.Username == entity.Username);
-
             return result != null;
         }
 
-        public override User Find(int id)
+        protected override User TryFind(int id)
         {
             var result = Context.Set<User>()
                 .Include(e => e.Roles)
@@ -36,7 +35,7 @@ namespace AGT.Repository
             return result;
         }
 
-        public override User Find(User entity)
+        protected override User TryFind(User entity)
         {
             var result = Context.Set<User>().FirstOrDefault(e => e.Username == entity.Username);
             if (result is null)
@@ -46,9 +45,5 @@ namespace AGT.Repository
             return result;
         }
 
-        private DomainContext DomainContext
-        {
-            get { return Context as DomainContext; }
-        }
     }
 }

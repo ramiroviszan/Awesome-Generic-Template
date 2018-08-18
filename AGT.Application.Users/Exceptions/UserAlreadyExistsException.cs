@@ -5,11 +5,12 @@ namespace AGT.Application.Users.Exceptions
 {
     public class UserAlreadyExistsException : ApplicationUsersException
     {
-        public UserAlreadyExistsException() : base("User already exists")
+        private const string MESSAGE = "User already exists";
+        public UserAlreadyExistsException() : base(MESSAGE)
         {
         }
 
-        public UserAlreadyExistsException(Exception inner) : base("User already exists", inner)
+        public UserAlreadyExistsException(Exception inner) : base(MESSAGE, inner)
         {
         }
     }

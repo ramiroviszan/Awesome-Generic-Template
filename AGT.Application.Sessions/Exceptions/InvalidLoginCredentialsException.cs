@@ -6,7 +6,8 @@ namespace AGT.Application.Sessions.Exceptions
 {
     public class InvalidLoginCredentialsException : ApplicationSessionsException
     {
-        public InvalidLoginCredentialsException() : base("Invalid username and password")
+        private const string MESSAGE = "Invalid username and password";
+        public InvalidLoginCredentialsException() : base(MESSAGE)
         {
         }
     }
